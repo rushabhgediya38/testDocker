@@ -11,7 +11,6 @@ WORKDIR /app
 EXPOSE 8000
 
 RUN python -m venv /py && \
-    apt-get -y install sudo && \
     /py/bin/pip install --upgrade pip && \
     apk add --update --no-cache postgresql-client && \
     apk add --update --no-cache --virtual .tmp-deps \
@@ -24,7 +23,7 @@ RUN python -m venv /py && \
     chown -R app:app /vol && \
     chmod -R 755 /vol && \
     chmod -R +x /scripts && \
-    chmod -R a+rwx ./data sudo
+    chmod -R a+rwx ./data
 
 ENV PATH="/scripts:/py/bin:$PATH"
 
